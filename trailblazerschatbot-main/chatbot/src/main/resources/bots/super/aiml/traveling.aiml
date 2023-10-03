@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here-->
+    	<category>
+  <pattern>hi</pattern>
+  <template><random>
+    <li>
+    	Hello! I am here to help you plan your trip
+    	How many days would you like me to plan a trip for
+    </li>
+  </random></template>
+  </category>
+  <category>
+    <pattern>* trip for * days</pattern>
+    <template>
+        <think><set name = "noOfDays"><star index="2"/></set></think>
+	      Where would you like to go in those <star index="2"/> days
+        </template>
+    </category>
+    <category>
+    <pattern>* trip for * day</pattern>
+    <template>
+        <think><set name = "noOfDays"><star index="2"/></set></think>
+	      where would you like to go that day
+        </template>
+    </category>
+  <category>
+    <pattern>* go to *</pattern>
+    <template>
+      <think><set name="destination">
+      	<star index="2"/></set>
+      	<set name="duration">0</set>
+      </think>
+      Great, you want to plan a trip to <get name="destination" />. Would you kindly help with some details?
+      What day are you planning to go to <get name="destination" />.
+    </template>
+  </category>
+  <category>
+    <pattern>* go for * days</pattern>
+    <template>
+      <think><set name="duration"><star index="2" /></set></think>
+      Are you planning to go somewhere else after?
+    </template>
+  </category>
+  <category>
+    <pattern>* go for * day</pattern>
+    <template>
+      <think><set name="duration"><star index="2" /></set></think>
+      Are you planning to go somewhere else after?
+    </template>
+  </category>
+  <category>
+    <pattern>* to go on *</pattern>
+    <template>
+      <think><set name="day"><star index="2"/></set></think>
+      How many days will you be there
+    </template>
+  </category>
+  <category>
+  	<pattern>NO</pattern>
+  	<template>
+  		<think>
+  			<set name="anymore">no</set>
+  			<set name="duration">0</set>
+  		</think>
+  		Alright
+  	</template>
+  </category>
+
+   <!-- Default category -->
+  <category>
+    <pattern>*</pattern>
+    <template>
+      Sorry, I didn't understand. 
+        I am only here to help you choose clothing based on location and day 
+    </template>
+  </category>
+
+</aiml>
